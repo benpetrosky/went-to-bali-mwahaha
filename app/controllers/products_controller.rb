@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_filter :authorize, except: [:index, :show]
+  # before_filter :authorize, except: [:index, :show]
 
   def index
     @products = Product.all
@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
       respond_to do |format|
         format.html
         format.js
-  end
+      end
     else
       render :new
     end
