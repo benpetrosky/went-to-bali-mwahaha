@@ -18,7 +18,6 @@
             <% if current_user %>
               <li><%= current_user.email %></li>
               <li><%= link_to "Sign out", '/sign_out' %></li>
-              <li><%= link_to "Add a Product", new_product_path, id:"new_product_link", remote: true %></li>
 
             <% else %>
               <li><%= link_to "Sign up", sign_up_path %></li>
@@ -31,6 +30,8 @@
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, id: "flash_#{name}" %>
       <% end %>
+        <%= link_to "Add a Product", new_product_path, id:"new_product_link", remote: true %>
+        <%= link_to "Home", root_path %>
       <%= yield %>
     </div>
   </body>

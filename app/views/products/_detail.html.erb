@@ -1,0 +1,22 @@
+
+<div class="container">
+<h1><%= link_to @product.name, products_path%>
+</h1>
+<h2>Description: <%= @product.description %></h2>
+<h3>Price: <%= number_to_currency @product.price %></h3>
+<p><%= @product.description %></p>
+<p><%= number_to_currency @product.price %></p>
+
+<%= form_for @order_item do |f| %>
+        <%= f.hidden_field :product_id, value: @product.id %>
+        <%= f.number_field :quantity, placeholder: "Oops, breaks if you don't add input!" %>
+        <span class="waves-effect waves-light btn"><%= f.submit "Add to cart" %></span>
+      <% end %>
+
+
+<% if current_user.admin %>
+   <p><%= link_to "Delete", product_path(@product),
+   :data => {:confirm => "You sure?",
+     :method => "delete"} %></p>
+ <% end %>
+ </div>
