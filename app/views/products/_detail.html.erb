@@ -1,11 +1,9 @@
 
-<div class="container">
+
 <h1><%= link_to @product.name, products_path%>
 </h1>
 <h2>Description: <%= @product.description %></h2>
 <h3>Price: <%= number_to_currency @product.price %></h3>
-<p><%= @product.description %></p>
-<p><%= number_to_currency @product.price %></p>
 
 <%= form_for @order_item do |f| %>
         <%= f.hidden_field :product_id, value: @product.id %>
@@ -14,9 +12,8 @@
       <% end %>
 
 
-<% if current_user.admin %>
+<% if current_user.admin && current_user %>
    <p><%= link_to "Delete", product_path(@product),
    :data => {:confirm => "You sure?",
      :method => "delete"} %></p>
  <% end %>
- </div>
