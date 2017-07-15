@@ -1,3 +1,5 @@
+<div id="detail_div">
+
 
 
 <h1><%= link_to @product.name, products_path%>
@@ -5,7 +7,7 @@
 <h2>Description: <%= @product.description %></h2>
 <h3>Price: <%= number_to_currency @product.price %></h3>
 
-<%= form_for @order_item do |f| %>
+<%= form_for @order_item, remote: true do |f| %>
         <%= f.hidden_field :product_id, value: @product.id %>
         <%= f.number_field :quantity, placeholder: "Oops, breaks if you don't add input!" %>
         <span class="waves-effect waves-light btn"><%= f.submit "Add to cart" %></span>
@@ -17,3 +19,4 @@
    :data => {:confirm => "You sure?",
      :method => "delete"} %></p>
  <% end %>
+ </div>

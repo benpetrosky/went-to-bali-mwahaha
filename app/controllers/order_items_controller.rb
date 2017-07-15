@@ -4,15 +4,16 @@ class OrderItemsController < ApplicationController
     @order = current_order
     @item = @order.order_items.new(item_params)
     if @order.save
-      # respond_to do |format|
-      #   format.html
-      #   format.js
-      # end
+      respond_to do |format|
+        format.html { redirect_to products_path }
+        format.js
+        flash[:notice] = "The product has been added to your cart!"
+      end
 
-    session[:order_id] = @order.id
-    redirect_to products_path
+    # session[:order_id] = @order.id
+    # redirect_to products_path
     else
-      redirect_to root_path
+      redirect_to product_path(product)
     end
   end
 
