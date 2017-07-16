@@ -15,7 +15,7 @@ class OrderItemsController < ApplicationController
 
     else
       flash[:notice] = "There was an issue placing your order. Please try again soon, or contact our customer service department."
-      redirect_to product_path(product)
+      redirect_to products_path
     end
   end
 
