@@ -6,15 +6,15 @@ class OrderItemsController < ApplicationController
     if @order.save
       flash[:notice] = "The product has been added to your cart!"
       respond_to do |format|
-        # format.html { redirect_to products_path }
         format.js  { redirect_to products_path }
 
 
       end
 
-    # session[:order_id] = @order.id
-    # redirect_to products_path
+    session[:order_id] = @order.id
+
     else
+      flash[:notice] = "There was an issue placing your order. Please try again soon, or contact our customer service department."
       redirect_to product_path(product)
     end
   end
