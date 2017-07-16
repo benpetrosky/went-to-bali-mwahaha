@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def new
-    
+
   end
 
   def create
@@ -9,8 +9,10 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       redirect_to '/'
+      flash[:notice] = "Congratulations! Your user account has been created."
     else
-      redirect_to '/signup'
+      flash[:notice] = "Your account has not been created."
+      redirect_to '/sign_up'
     end
   end
 
