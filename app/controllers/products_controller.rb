@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  # before_filter :authorize, except: [:index, :show]
+  before_filter :authorize, except: [:index, :show]
 
   def index
     @products = Product.all
@@ -27,9 +27,28 @@ class ProductsController < ApplicationController
         format.js {redirect_to products_path}
       end
     else
-      render :new
+      flash[:notice] = "Product was not added succesfully. Validations may have not been fullfilled.  See your management handbook for details."
+      redirect_to products_path
     end
   end
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    flash[:notice] = "The product has succesfully been removed from the website."
+
+    redirect_to products_path
+  end
+
+  def update
+  @product = Product.find(params[:id])
+  if @product.update(product_params)
+    flash[:notice]= "The product has been updated"
+    redirect_to products_path
+  else
+    flash[:notice] = "There was an issue! The update you tried to make has not been saved"
+  redirect_to product_path(@product)
+  end
+end
 
   private
   def product_params

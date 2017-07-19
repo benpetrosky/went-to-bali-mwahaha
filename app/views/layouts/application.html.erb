@@ -9,7 +9,7 @@
   </head>
   <body>
     <div class="container">
-    
+
 
       <nav>
         <div class="nav-wrapper">
@@ -31,8 +31,10 @@
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, id: "flash_#{name}" %>
       <% end %>
+      <% if current_user && current_user.admin %>
         <%= link_to "Add a Product", new_product_path, id:"new_product_link", remote: true %>
-        <%= link_to "Home", root_path %>
+      <% end %>
+      <%= link_to "Home", root_path %>
       <%= yield %>
     </div>
   </body>

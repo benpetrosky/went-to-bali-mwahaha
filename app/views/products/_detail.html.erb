@@ -2,6 +2,7 @@
 
 
 
+
 <h1><%= link_to @product.name, products_path%>
 </h1>
 <h2>Description: <%= @product.description %></h2>
@@ -20,5 +21,17 @@
    <p><%= link_to "Delete", product_path(@product),
    :data => {:confirm => "You sure?",
      :method => "delete"} %></p>
+<div>
+
+
+     <%= form_for @product do |f| %>
+       Name: <%= f.text_field :name %>
+       Description: <%= f.text_field :description %>
+       Price: <%= f.number_field :price, step: 0.01 %>
+     <%= f.submit "Update the product" %>
+
+   <% end %>
+   </div>
+
  <% end %>
  </div>
