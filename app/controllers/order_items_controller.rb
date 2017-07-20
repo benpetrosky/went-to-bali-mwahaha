@@ -3,10 +3,11 @@ class OrderItemsController < ApplicationController
   def create
     @order = current_order
     @item = @order.order_items.new(item_params)
+
     if @order.save
       flash[:notice] = "The product has been added to your cart!"
       respond_to do |format|
-        format.html 
+        format.html
         format.js
 
 
@@ -31,13 +32,15 @@ class OrderItemsController < ApplicationController
   def destroy
     @order = current_order
     @item = @order.order_items.find(params[:id])
-    flash[:notice] = "The product has been removed from your cart!"
-    respond_to do |format|
-      format.js
-    end
     @item.destroy
     @order.save
-    redirect_to cart_path
+    flash[:notice] = "The product has been removed from your cart!"
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+
   end
 
   private
