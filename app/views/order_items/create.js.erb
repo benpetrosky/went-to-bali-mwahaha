@@ -1,3 +1,4 @@
 $("#detail_div").hide();
 $('.section').show();
 $('.all_products_link').show()
+$('#cart_items_nav').html('<%= link_to "Cart | Total items: #{ cart_items }", cart_path %>');

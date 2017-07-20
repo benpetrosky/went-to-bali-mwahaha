@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
       flash[:notice] = "Product added succesfully!"
       respond_to do |format|
         format.html
-        format.js {redirect_to products_path}
+        format.js 
       end
     else
       flash[:notice] = "Product was not added succesfully. Validations may have not been fullfilled.  See your management handbook for details."

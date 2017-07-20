@@ -6,7 +6,8 @@ class OrderItemsController < ApplicationController
     if @order.save
       flash[:notice] = "The product has been added to your cart!"
       respond_to do |format|
-        format.js  { redirect_to products_path }
+        format.html 
+        format.js
 
 
       end
@@ -32,7 +33,7 @@ class OrderItemsController < ApplicationController
     @item = @order.order_items.find(params[:id])
     flash[:notice] = "The product has been removed from your cart!"
     respond_to do |format|
-      format.js 
+      format.js
     end
     @item.destroy
     @order.save
